@@ -30,11 +30,11 @@
     "commit": "cz"
   },
   "dependencies": {
-    "@bull-board/api": "^6.9.2",
-    "@bull-board/express": "^6.9.2",
+    "@bull-board/api": "^6.9.5",
+    "@bull-board/express": "^6.9.5",
     "body-parser": "^1.20.3",
     "bull": "^4.16.5",
-    "bullmq": "^5.49.1",
+    "bullmq": "^5.52.1",
     "connect-ensure-login": "^0.1.1",
     "dotenv": "^16.5.0",
     "esm": "^3.2.25",
@@ -53,12 +53,12 @@
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/commit-analyzer": "^13.0.1",
     "@semantic-release/git": "^10.0.1",
-    "@semantic-release/github": "^11.0.1",
+    "@semantic-release/github": "^11.0.2",
     "@semantic-release/release-notes-generator": "^14.0.3",
     "commitizen": "^4.3.1",
     "conventional-changelog-conventionalcommits": "^8.0.0",
     "husky": "^9.1.7",
-    "nodemon": "^3.1.9",
+    "nodemon": "^3.1.10",
     "semantic-release": "^24.2.3"
   },
   "engines": {
