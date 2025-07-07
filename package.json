@@ -30,13 +30,13 @@
     "commit": "cz"
   },
   "dependencies": {
-    "@bull-board/api": "^6.10.1",
-    "@bull-board/express": "^6.10.1",
+    "@bull-board/api": "^6.11.0",
+    "@bull-board/express": "^6.11.0",
     "body-parser": "^1.20.3",
     "bull": "^4.16.5",
-    "bullmq": "^5.53.3",
+    "bullmq": "^5.56.1",
     "connect-ensure-login": "^0.1.1",
-    "dotenv": "^16.5.0",
+    "dotenv": "^17.0.1",
     "esm": "^3.2.25",
     "exponential-backoff": "^3.1.2",
     "express": "^4.21.2",
@@ -59,7 +59,7 @@
     "conventional-changelog-conventionalcommits": "^9.0.0",
     "husky": "^9.1.7",
     "nodemon": "^3.1.10",
-    "semantic-release": "^24.2.5"
+    "semantic-release": "^24.2.6"
   },
   "engines": {
     "yarn": "please use npm",
