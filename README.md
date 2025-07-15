@@ -2,6 +2,9 @@ Docker image for [bull-board]. Allow you to monitor your bull queue without any 
 
 Supports both bull and bullmq.
 
+> [!IMPORTANT]
+> Drop of 32-bit support from v2.0.0 (due to problems with Node.js 20 in 32-bit mode)
+
 ### Quick start with Docker
 ```
 docker run -p 3000:3000 venatum/bull-board:latest
@@ -180,3 +183,6 @@ volumes:
 
 [bull-board]: https://github.com/felixmosh/bull-board
 [bull-board]: https://github.com/felixmosh/bull-board#hosting-router-on-a-sub-path
+
+---
+https://github.com/Venatum/bull-board-docker
