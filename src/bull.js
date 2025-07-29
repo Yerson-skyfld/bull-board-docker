@@ -7,9 +7,11 @@ import Bull from 'bull';
 import {backOff} from "exponential-backoff";
 
 import {client, redisConfig} from "./redis";
-import {config} from "./config";
+import {config, PROXY_PATH} from "./config";
 
 const serverAdapter = new ExpressAdapter();
+serverAdapter.setBasePath(PROXY_PATH)
+
 const {setQueues} = createBullBoard({
 	queues: [],
 	serverAdapter,
