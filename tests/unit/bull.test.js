@@ -51,22 +51,36 @@ describe('Bull Queue Setup', () => {
 		}));
 
 		// Setup Express Adapter mock
-		ExpressAdapterMock = vi.fn().mockImplementation(() => ({
-			getRouter: vi.fn().mockReturnValue('router'),
-		}));
+		ExpressAdapterMock = vi.fn();
 		vi.doMock('@bull-board/express', () => ({
-			ExpressAdapter: ExpressAdapterMock,
+			// Provide a constructable class and keep a spy on constructor calls
+			ExpressAdapter: class {
+				constructor(...args) {
+					ExpressAdapterMock(...args);
+				}
+				getRouter() {
+					return 'router';
+				}
+			},
 		}));
 
 		// Setup Adapter mocks
 		BullMQAdapterMock = vi.fn();
 		vi.doMock('@bull-board/api/bullMQAdapter', () => ({
-			BullMQAdapter: BullMQAdapterMock,
+			BullMQAdapter: class {
+				constructor(...args) {
+					BullMQAdapterMock(...args);
+				}
+			},
 		}));
 
 		BullAdapterMock = vi.fn();
 		vi.doMock('@bull-board/api/bullAdapter', () => ({
-			BullAdapter: BullAdapterMock,
+			BullAdapter: class {
+				constructor(...args) {
+					BullAdapterMock(...args);
+				}
+			},
 		}));
 
 		// Setup Redis mock

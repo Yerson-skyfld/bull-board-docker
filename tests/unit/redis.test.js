@@ -106,7 +106,7 @@ describe('Redis Client', () => {
 			}));
 
 			// Test that the mock keys method returns an empty array
-			expect(client.keys()).resolves.toEqual([]);
+			await expect(client.keys()).resolves.toEqual([]);
 		});
 	});
 
