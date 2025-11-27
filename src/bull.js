@@ -45,29 +45,53 @@ const {setQueues} = createBullBoard({
 export const router = serverAdapter.getRouter();
 
 async function getBullQueues() {
-	const keys = await client.keys(`${config.BULL_PREFIX}:*`);
-	const uniqKeys = new Set(keys.map(key => key.replace(/^.+?:(.+?):.+?$/, '$1')));
+  const prefixes = [];
+  if (config.EXTRA_PREFIXES) {
+    prefixes.push(...config.EXTRA_PREFIXES.split(','));
+  }
+  
+  prefixes.push(config.BULL_PREFIX);
+  const uniqQueues = new Map(); // Map<queueName, prefix>
 
-	// This increases the number of connections.
-	// Example: on a cluster I went from an average of 100 to 28k
-	// const uniqKeys = new Set(keys.map(key => key.replace(
-	// 	new RegExp(`^${config.BULL_PREFIX}:(.+):[^:]+$`),
-	// 	'$1'
-	// )));
+  for (const prefix of prefixes) {
+    const keys = await client.keys(`${prefix}:*`);
+    keys.forEach((key) => {
+      const parts = key.split(':');
+      if (parts.length < 2) return;
+      const queueName = parts[1];
+      if (!uniqQueues.has(queueName)) {
+        uniqQueues.set(queueName, prefix);
+      }
+    });
+  }
 
-	const queueList = Array.from(uniqKeys).sort().map(
-		(item) => config.BULL_VERSION === 'BULLMQ' ?
-			new BullMQAdapter(new Queue(item, {
-				connection: redisConfig.redis,
-			}, client.connection)) :
-			new BullAdapter(new Bull(item, {
-				redis: redisConfig.redis,
-			}, client.connection))
-	);
-	if (queueList.length === 0) {
-		throw new Error("No queue found.");
-	}
-	return queueList;
+  if (uniqQueues.size === 0) {
+    throw new Error('No queues found in Redis!');
+  }
+
+  const queueList = []
+  Array.from(uniqQueues.entries())
+    .forEach(([queueName, prefix]) => {
+      if (config.BULL_VERSION === 'BULLMQ') {
+        queueList.push(new BullMQAdapter(
+          new Queue(queueName, 
+            { connection: redisConfig.redis, prefix }, 
+            client.connection
+          )
+        ));
+      } else {
+        queueList.push(
+          new BullAdapter(new Bull(queueName, { redis: redisConfig.redis, prefix }, client.connection))
+        );
+      }
+    }
+  );
+
+  if (!queueList.length) {
+    throw new Error('No queue found.');
+  }
+
+  return queueList;
 }
 
 async function bullMain() {
