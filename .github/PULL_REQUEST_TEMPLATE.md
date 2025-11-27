@@ -1,10 +1,13 @@
 [//]: # (please fill in all the fields required to understand your PR and delete the rest.)
+[//]: # (And remember to tests with `npm run test`)
 
 # 🚀 Fix #issue - Subject Issue
 
 _Your little description about your changes_
 
 ## 📦 What's in the box?
+
+[//]: # (Add a list of what you have done)
 
 - [ ] Your feature
 - [ ] Your improvement
@@ -13,12 +16,12 @@ _Your little description about your changes_
 ## 🤖 How to test it?
 
 - Checkout the `fix/branch-name`
-- Run some E2E tests `pnpm --filter @cloudsync/stuff test:e2e`
+- Run some tests `npm run test`
 - Enjoy the landscape?
 
 ## ⚙️ Your settings
 
-- Copy-Paste the `./e2e-env/.env.dist` to `./e2e-env/.env`
+- Setup `.env`
 
 ## ⚠️ WARNING!
 

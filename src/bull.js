@@ -2,7 +2,7 @@ import {createBullBoard} from "@bull-board/api";
 import {ExpressAdapter} from "@bull-board/express";
 import {BullMQAdapter} from "@bull-board/api/bullMQAdapter";
 import {BullAdapter} from "@bull-board/api/bullAdapter";
-import { Queue } from 'bullmq';
+import {Queue} from 'bullmq';
 import Bull from 'bull';
 import {backOff} from "exponential-backoff";
 
@@ -117,8 +117,8 @@ async function bullMain() {
 
 // Only run bullMain in non-test environment
 if (process.env.NODE_ENV !== 'test') {
-  bullMain();
+	bullMain();
 }
 
 // Export for testing
-export { bullMain, getBullQueues };
+export {bullMain, getBullQueues};
