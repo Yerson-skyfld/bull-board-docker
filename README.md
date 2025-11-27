@@ -78,6 +78,7 @@ Please note that on the interface, the Redis server info button will not work. F
 
 **Queue setup**
 * `BULL_PREFIX` - prefix to your bull queue name (`bull` by default)
+* `EXTRA_PREFIXES` - prefixes to add in addition to bull queue (`null` by default)
 * `BULL_VERSION` - version of bull lib to use 'BULLMQ' or 'BULL' (`BULLMQ` by default)
 * `BACKOFF_STARTING_DELAY` - The delay, in milliseconds, before starts the research for the first time (`500` by default)
 * `BACKOFF_MAX_DELAY` - The maximum delay, in milliseconds, between two consecutive attempts (`Infinity` by default)

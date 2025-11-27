@@ -62,6 +62,7 @@ export const config = {
 	AUTH_ENABLED: Boolean(process.env.USER_LOGIN && process.env.USER_PASSWORD),
 	HOME_PAGE: PROXY_PATH || '/',
 	LOGIN_PAGE: `${PROXY_PATH}/login`,
+	EXTRA_PREFIXES: process.env.EXTRA_PREFIXES || null,
 
 	// Bullboard UI configuration
 	BULL_BOARD_TITLE: process.env.BULL_BOARD_TITLE,
